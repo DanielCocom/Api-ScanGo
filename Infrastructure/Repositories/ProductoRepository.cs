@@ -21,16 +21,14 @@ public class ProductoRepository
         var producto = await _context.Producto.FirstOrDefaultAsync(producto => producto.Codigodebarras == id);
         return producto ?? new Producto();
     }
-    public async Task Add(Producto producto){
-        await _context.AddAsync(producto);
-        await _context.SaveChangesAsync(); 
-    }
+      
     // update  por si lo necesito
     public async Task Delete(string id){
         var producto = await _context.Producto.FirstOrDefaultAsync(producto => producto.Codigodebarras == id);
         if(producto != null){
             _context.Producto.Remove(producto);
             await _context.SaveChangesAsync();
+            //hay que hacer esto
         }
     }
 }
