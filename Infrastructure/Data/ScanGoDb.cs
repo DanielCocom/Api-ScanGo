@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Microsoft.EntityFrameworkCore;
 using api_scango.Domain.Entities;
 using api_scango.Infrastructure.Data.Configurations;
+
 namespace api_scango.Infrastructure.Data;
 
 public partial class ScanGoDb : DbContext
@@ -31,18 +31,18 @@ public partial class ScanGoDb : DbContext
 
     public virtual DbSet<ProductoEnCarrito> ProductoEnCarrito { get; set; }
 
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //     => optionsBuilder.UseSqlServer("Name=ConnectionStrings:gemDevelopment");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:gemDevelopment");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-         modelBuilder.ApplyConfiguration(new ProductoEnCrritoConfiguration());
-        modelBuilder.ApplyConfiguration(new ClientetConfiguration());
-        modelBuilder.ApplyConfiguration(new CarritoConfiguration());
-        modelBuilder.ApplyConfiguration(new DetalleCompraConfiguration());
-        modelBuilder.ApplyConfiguration(new EstablecimientoConfiguration());
-        modelBuilder.ApplyConfiguration(new CompraConfiguration());
         modelBuilder.ApplyConfiguration(new ProductoConfiguration());
+        modelBuilder.ApplyConfiguration(new EstablecimientoConfiguration());
+        modelBuilder.ApplyConfiguration(new CarritoConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductoEnCarritoConfiguration());
+        modelBuilder.ApplyConfiguration(new ClientetConfiguration());
+        modelBuilder.ApplyConfiguration(new CompraConfiguration());
+        modelBuilder.ApplyConfiguration(new DetalleCompraConfiguration());
 
 
 

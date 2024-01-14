@@ -10,28 +10,34 @@ public class ClientetConfiguration : IEntityTypeConfiguration<Cliente>
     public void Configure(EntityTypeBuilder<Cliente> builder)
     {
         builder.ToTable("Cliente");
-        builder.HasKey(e => e.Numerodetelefono).HasName("PK__Cliente__F2628ECFF16EC672");
+                   builder.HasKey(e => e.Numerodetelefono).HasName("PK__Cliente__F2628ECF99E08FA9");
 
             builder.Property(e => e.Numerodetelefono)
-                .ValueGeneratedNever()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("numerodetelefono");
+            builder.Property(e => e.Apellido)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("apellido");
             builder.Property(e => e.Contraseña)
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("contraseña");
             builder.Property(e => e.Correo)
-                .HasMaxLength(255)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("correo");
             builder.Property(e => e.IdCarrito).HasColumnName("id_carrito");
             builder.Property(e => e.Nombre)
-                .HasMaxLength(255)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
 
             builder.HasOne(d => d.IdCarritoNavigation).WithMany(p => p.Cliente)
                 .HasForeignKey(d => d.IdCarrito)
                 .HasConstraintName("FK__Cliente__id_carr__3B75D760");
+
         
     }
 }

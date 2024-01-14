@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace api_scango.Domain.Entities;
 
-
 public partial class Producto
 {
     public string Codigodebarras { get; set; } = null!;

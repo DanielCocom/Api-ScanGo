@@ -10,7 +10,7 @@ public class ProductoConfiguration : IEntityTypeConfiguration<Producto>
     public void Configure(EntityTypeBuilder<Producto> builder)
     {
         builder.ToTable("Producto");
-                    builder.HasKey(e => e.Codigodebarras).HasName("PK__Producto__FA9C38D875F261F2");
+                   builder.HasKey(e => e.Codigodebarras).HasName("PK__Producto__FA9C38D8D53DE167");
 
             builder.Property(e => e.Codigodebarras)
                 .HasMaxLength(50)
@@ -22,7 +22,7 @@ public class ProductoConfiguration : IEntityTypeConfiguration<Producto>
                 .IsUnicode(false)
                 .HasColumnName("imagen");
             builder.Property(e => e.Nombre)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
             builder.Property(e => e.Precio)

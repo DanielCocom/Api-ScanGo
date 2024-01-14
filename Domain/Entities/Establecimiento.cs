@@ -8,7 +8,17 @@ public partial class Establecimiento
 {
     public int IdEstablecimiento { get; set; }
 
-    public string? Nombre { get; set; }
+    public string? NombreEstablecimiento { get; set; }
+
+    public string? Servidor { get; set; }
+
+    public string? NombreBaseDatos { get; set; }
+
+    public string? Usuario { get; set; }
+
+    public string? Contraseña { get; set; }
+
+    public string? TipoBaseDatos { get; set; }
 
     public decimal? UbicacionLatitud { get; set; }
 

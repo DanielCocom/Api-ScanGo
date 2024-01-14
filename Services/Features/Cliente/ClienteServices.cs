@@ -20,7 +20,7 @@ namespace api_scango.Domain.Services
             _clienteRepository = clienteRepository;
         }
 
-        public async Task<Cliente> ObtenerClientePorTelefonoAsync(int numerodetelefono)
+        public async Task<Cliente> ObtenerClientePorTelefonoAsync(string numerodetelefono)
         {
             return await _clienteRepository.GetById(numerodetelefono);
         }

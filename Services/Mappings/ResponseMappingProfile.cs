@@ -13,7 +13,26 @@ public class ReponseMappingProfile : Profile
         CreateMap<Cliente, ClienteDto>()
         .ForMember( dest => dest.NumeroTelefonico, opt => opt.MapFrom(src => src.Numerodetelefono))
         .ForMember( dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+        .ForMember( dest => dest.Apellido, opt => opt.MapFrom(src => src.Apellido))
         .ForMember( dest => dest.Correo, opt => opt.MapFrom(src => src.Correo));
+        // .ForMember( dest => dest.Contraseña, opt => opt.MapFrom(src => src.Contraseña));
+
+
+
+        CreateMap<Producto, ProductoDto>()
+        .ForMember( dest => dest.Codigodebarras, opt => opt.MapFrom(src => src.Codigodebarras))
+        .ForMember( dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+        .ForMember( dest => dest.Precio, opt => opt.MapFrom(src => src.Precio))
+        .ForMember( dest => dest.Cantidad, opt => opt.MapFrom(src => src.Cantidad));
+        // .ForMember( dest => dest.Imagen, opt => opt.MapFrom(src => src.Imagen));
+
+         CreateMap<ProductoEnCarrito, ProductoEnCarritoDto>()
+                // .ForMember(dest => dest.IdCarrito, opt => opt.MapFrom(src => src.IdCarrito))
+                .ForMember(dest => dest.Codigodebarras, opt => opt.MapFrom(src => src.Codigodebarras))
+                .ForMember(dest => dest.Cantidad, opt => opt.MapFrom(src => src.Cantidad))
+                .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Total))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.ProductoNombre ?? "no hay nombre xd"));
+
 
     }
 

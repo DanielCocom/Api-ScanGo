@@ -16,6 +16,11 @@ builder.Services.AddTransient<ProductoRepository>();
 builder.Services.AddScoped<ClienteService>();
 builder.Services.AddTransient<ClienteRepository>();
 
+// Carrito
+builder.Services.AddScoped<CarritoService>();
+builder.Services.AddTransient<CarritoRepository>();
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ScanGoDb>(
@@ -31,11 +36,8 @@ builder.Services.AddAutoMapper(typeof(ReponseMappingProfile).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 

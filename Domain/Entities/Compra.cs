@@ -8,7 +8,7 @@ public partial class Compra
 {
     public int IdCompra { get; set; }
 
-    public int? Numerodetelefono { get; set; }
+    public string? Numerodetelefono { get; set; }
 
     public DateTime? FechaDeCompra { get; set; }
 

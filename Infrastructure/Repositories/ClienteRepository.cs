@@ -13,7 +13,7 @@ namespace api_scango.Infrastructure.Data.Repositories
     //     // Otros métodos relacionados con la entidad Cliente si es necesario
     // }
 
-    public class ClienteRepository 
+    public class ClienteRepository
     {
         private readonly ScanGoDb _context;
 
@@ -22,12 +22,15 @@ namespace api_scango.Infrastructure.Data.Repositories
             _context = dbContext;
         }
 
-        public async Task<Cliente> GetById(int numerodetelefono)
+        public async Task<Cliente> GetById(string numerodetelefono)
         {
-            var cliente = await _context.Cliente.FirstOrDefaultAsync(cliente => cliente.Numerodetelefono == numerodetelefono);
+            var cliente = await _context.Cliente
+                .Include(c => c.IdCarritoNavigation.ProductoEnCarrito) // Incluir carga ansiosa del carrito
+                .FirstOrDefaultAsync(cliente => cliente.Numerodetelefono == numerodetelefono);
+
             return cliente ?? new Cliente();
-            
         }
+
 
         public async Task AgregarClienteAsync(Cliente cliente)
         {
@@ -39,7 +42,7 @@ namespace api_scango.Infrastructure.Data.Repositories
 
             await _context.AddAsync(cliente);
             await _context.SaveChangesAsync();
-            
+
         }
         // actualizarCliente
 
