@@ -10,6 +10,7 @@ public class RequestMappingProfile : Profile
         CreateMap<ClienteCreateDTO, Cliente>();
         CreateMap<ProductoCreateDto, Producto>();
          CreateMap<ProductoEnCarrito, ProductoEnCarritoDto>().ReverseMap();
+         CreateMap<EstablecimientoDTO, Establecimiento>();
 
     }
     

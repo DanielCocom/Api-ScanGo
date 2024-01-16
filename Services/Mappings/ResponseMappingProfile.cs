@@ -31,7 +31,20 @@ public class ReponseMappingProfile : Profile
                 .ForMember(dest => dest.Codigodebarras, opt => opt.MapFrom(src => src.Codigodebarras))
                 .ForMember(dest => dest.Cantidad, opt => opt.MapFrom(src => src.Cantidad))
                 .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Total))
-                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.ProductoNombre ?? "no hay nombre xd"));
+                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.ProductoNombre ?? "no hay nombre xd"));
+
+
+         CreateMap<Establecimiento, EstablecimientoDTO>()
+         .ForMember(dest => dest.NombreEstablecimiento, opt => opt.MapFrom(src => src.NombreEstablecimiento))
+         .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Usuario))
+         .ForMember(dest => dest.Contraseña, opt => opt.MapFrom(src => src.Contraseña))
+         .ForMember(dest => dest.NombreBaseDatos, opt => opt.MapFrom(src => src.NombreBaseDatos))
+         .ForMember(dest => dest.Contraseña, opt => opt.MapFrom(src => src.Contraseña));
+
+
+
+
+
 
 
     }

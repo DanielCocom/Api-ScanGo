@@ -31,7 +31,6 @@ namespace api_scango.Infrastructure.Data.Repositories
             return cliente ?? new Cliente();
         }
 
-
         public async Task AgregarClienteAsync(Cliente cliente)
         {
             var newCarrito = new Carrito();

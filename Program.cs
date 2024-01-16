@@ -1,6 +1,7 @@
 using api_scango.Domain.Services;
 using api_scango.Infrastructure.Data;
 using api_scango.Infrastructure.Data.Repositories;
+using api_scango.Services.Fetures.establecimiento;
 using api_scango.Services.Fetures.producto;
 using api_scango.Services.Mappings;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,9 @@ builder.Services.AddTransient<ClienteRepository>();
 // Carrito
 builder.Services.AddScoped<CarritoService>();
 builder.Services.AddTransient<CarritoRepository>();
+
+builder.Services.AddScoped<EstablecimientoService>();
+builder.Services.AddTransient<EstablecimientoRepository>();
 
 
 

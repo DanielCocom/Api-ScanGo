@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using api_scango.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using api_scango.Infrastructure.Data.Configurations;
 using api_scango.Domain.Dtos;
 
 namespace api_scango.Infrastructure.Data.Repositories;
@@ -40,22 +39,23 @@ public class CarritoRepository
 
         if (productoEnCarrito != null)
         {
-            // Si el producto ya está en el carrito, aumentar la cantidad y actualizar el total
             productoEnCarrito.Cantidad += cantidad;
             productoEnCarrito.Total += producto.Precio * cantidad;
         }
         else
         {
-            // Si el producto no está en el carrito, agregarlo
             carrito!.ProductoEnCarrito.Add(new ProductoEnCarrito
             {
+                // es importante asignar los valores cuando se instancia el objeto
                 Codigodebarras = producto.Codigodebarras,
+                 ProductoNombre = producto.Nombre,
                 Cantidad = cantidad,
                 Total = producto.Precio
             });
         }
 
         await _context.SaveChangesAsync();
+
     }
 
 
@@ -63,16 +63,17 @@ public class CarritoRepository
     public async Task<List<ProductoEnCarritoDto>> GetProductos(string numerodetelefono)
     {
         var cliente = await _context.Cliente
-            .Include(c => c.IdCarritoNavigation)
-            .ThenInclude(c => c.ProductoEnCarrito)
-            .FirstOrDefaultAsync(c => c.Numerodetelefono == numerodetelefono);
+    .Include(c => c.IdCarritoNavigation)
+    .ThenInclude(c => c!.ProductoEnCarrito)
+    .ThenInclude(pc => pc.CodigodebarrasNavigation) // Asegúrate de incluir la entidad de Producto
+    .FirstOrDefaultAsync(c => c.Numerodetelefono == numerodetelefono);
 
-        var productosEnCarrito = cliente.IdCarritoNavigation.ProductoEnCarrito.ToList();
+        var productosEnCarrito = cliente!.IdCarritoNavigation!.ProductoEnCarrito.ToList();
 
-        // Utiliza AutoMapper para mapear la lista de entidades a una lista de DTOs
         var productosEnCarritoDto = _mapper.Map<List<ProductoEnCarritoDto>>(productosEnCarrito);
 
         return productosEnCarritoDto;
+
     }
 }
 
