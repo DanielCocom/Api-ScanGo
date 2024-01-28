@@ -21,12 +21,12 @@ namespace api_scango.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{numerodetelefono}")]
-        public async Task<IActionResult> ObtenerClientePorTelefono(string numerodetelefono)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObtenerClientePorTelefono(string id)
         {
             try
             {
-                var cliente = await _clienteService.ObtenerClientePorTelefonoAsync(numerodetelefono);
+                var cliente = await _clienteService.ObtenerClientePorTelefonoAsync(id);
 
                 if (cliente == null)
                 {
@@ -43,31 +43,40 @@ namespace api_scango.Controllers
                 return StatusCode(500, new { error = "Error interno del servidor", message = ex.Message });
             }
         }
-
         [HttpPost("registrar")]
         public async Task<IActionResult> RegistrarNuevoCliente([FromBody] ClienteCreateDTO nuevoCliente)
         {
+
+            var entity = _mapper.Map<Cliente>(nuevoCliente);
+            await _clienteService.RegistrarNuevoClienteAsync(entity);
+
+            var dto = _mapper.Map<ClienteDto>(entity);
+
+            return CreatedAtAction(nameof(ObtenerClientePorTelefono), new { id = entity.Numerodetelefono }, dto); // Cambiado de Created a Ok
+
+            // Loguea el error
+
+        }
+        [HttpPost("login")]
+        public async Task<ActionResult<Cliente>> InicioSesion([FromBody] ClienteLoginDTO login)
+        {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                var entity = _mapper.Map<Cliente>(nuevoCliente);
-                await _clienteService.RegistrarNuevoClienteAsync(entity);
-
-                var dto = _mapper.Map<ClienteDto>(entity);
-
-                return CreatedAtAction(nameof(ObtenerClientePorTelefono), new { numerodetelefono = entity.Numerodetelefono }, dto);
+                var cliente = await _clienteService.InicioSesion(login.Numerodetelefono, login.Contraseña);
+                // Resto del código para manejar el inicio de sesión y devolver una respuesta adecuada.
+                // ...
+                return Ok("Sesion iniciada");
             }
             catch (Exception ex)
             {
-                // Loguea el error
-                return StatusCode(500, new { error = "Error interno del servidor", message = ex.Message });
+                return BadRequest(new { error = "Error de autenticación", message = ex.Message });
             }
-        }
 
-        // Agrega otros endpoints según sea necesario para las operaciones CRUD
+        }
     }
 }
+
+
+
+
+

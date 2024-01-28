@@ -23,7 +23,7 @@ public class CarritoController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            await _carritoService.AgregarProductoAlCarrito(modelo.Numerodetelefono!, modelo.Codigodebarras!, modelo.cantidada);
+            await _carritoService.AgregarProductoAlCarrito(modelo.Numerodetelefono!, modelo.Codigodebarras!);
             return Ok(new { message = "Producto agregado al carrito exitosamente" });
         }
         catch (Exception ex)

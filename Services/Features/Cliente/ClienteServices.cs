@@ -4,14 +4,9 @@ using api_scango.Infrastructure.Data.Repositories;
 
 namespace api_scango.Domain.Services
 {
-    // public interface IClienteService
-    // {
-    //     Task<Cliente> ObtenerClientePorTelefonoAsync(int numerodetelefono);
 
-    //     Task RegistrarNuevoClienteAsync(Cliente nuevoCliente);
-    // }
 
-    public class ClienteService 
+    public class ClienteService
     {
         private readonly ClienteRepository _clienteRepository;
 
@@ -28,6 +23,21 @@ namespace api_scango.Domain.Services
         public async Task RegistrarNuevoClienteAsync(Cliente nuevoCliente)
         {
             await _clienteRepository.AgregarClienteAsync(nuevoCliente);
+        }
+        public async Task<Cliente> InicioSesion(string telefono, string contraseña)
+        {
+            var cliente = await _clienteRepository.GetById(telefono);
+
+            if (cliente.Contraseña == contraseña)
+            {
+                // Éxito en la autenticación.
+                return cliente;
+            }
+            else
+            {
+                // Contraseña incorrecta u otra lógica de autenticación fallida.
+                throw new Exception("Credenciales incorrectas");
+            }
         }
     }
 }

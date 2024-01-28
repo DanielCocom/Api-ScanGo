@@ -20,7 +20,7 @@ public class CarritoRepository
         this._context = scanGoDb;
         this._mapper = mapper;
     }
-    public async Task AddProducto(string numerodetelefono, string codigodebarras, int cantidad)
+    public async Task AddProducto(string numerodetelefono, string codigodebarras)
     {
         var cliente = await _clienteRepository.GetById(numerodetelefono);
         var producto = await _productoRepository.GetById(codigodebarras);
@@ -37,11 +37,11 @@ public class CarritoRepository
         var productoEnCarrito = carrito!.ProductoEnCarrito
             .FirstOrDefault(p => p.Codigodebarras == codigodebarras);
 
-        if (productoEnCarrito != null)
+        if (productoEnCarrito != null)   
         {
-            productoEnCarrito.Cantidad += cantidad;
-            productoEnCarrito.Total += producto.Precio * cantidad;
-        }
+            productoEnCarrito.Cantidad += 1;
+            productoEnCarrito.Total += producto.Precio * productoEnCarrito.Cantidad;
+        } 
         else
         {
             carrito!.ProductoEnCarrito.Add(new ProductoEnCarrito
@@ -49,7 +49,7 @@ public class CarritoRepository
                 // es importante asignar los valores cuando se instancia el objeto
                 Codigodebarras = producto.Codigodebarras,
                  ProductoNombre = producto.Nombre,
-                Cantidad = cantidad,
+                Cantidad = 1,
                 Total = producto.Precio
             });
         }

@@ -1,3 +1,4 @@
+using System.Net;
 using System.Threading.Tasks;
 using api_scango.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,15 @@ namespace api_scango.Infrastructure.Data.Repositories
 
         }
         // actualizarCliente
+        public async Task<Cliente> InicioSesion(string telefono, string contraseña)
+        {
+            var cliente = await GetById(telefono);
+            if (cliente == null)
+            {
+                throw new Exception("No existe la cuenta con el número de teléfono proporcionado");
+            }
+            return cliente;
+        }
 
 
         // Implementa otros métodos según sea necesario

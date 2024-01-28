@@ -11,9 +11,9 @@ public class CarritoService
         _carritoRepository = carritoRepository;
     }
 
-    public async Task AgregarProductoAlCarrito(string numerodetelefono, string codigodebarras, int cantidad)
+    public async Task AgregarProductoAlCarrito(string numerodetelefono, string codigodebarras)
     {
-        await _carritoRepository.AddProducto(numerodetelefono, codigodebarras, cantidad);
+        await _carritoRepository.AddProducto(numerodetelefono, codigodebarras);
     }
     public async Task<List<ProductoEnCarritoDto>> GetProductos(string numerodetelefono)
 {
