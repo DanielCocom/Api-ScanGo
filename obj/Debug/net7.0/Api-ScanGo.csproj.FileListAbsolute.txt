@@ -76,8 +76,3 @@ C:\Users\danie\Desktop\Api-ScanGo\obj\Debug\net7.0\Api-ScanGo.genruntimeconfig.c
 C:\Users\danie\Desktop\Api-ScanGo\obj\Debug\net7.0\ref\Api-ScanGo.dll
 C:\Users\danie\Desktop\Api-ScanGo\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\danie\Desktop\Api-ScanGo\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\danie\Desktop\Api-ScanGo\bin\Debug\net7.0\publish\web.config
-C:\Users\danie\Desktop\Api-ScanGo\bin\Debug\net7.0\publish\Api-ScanGo.deps.json
-C:\Users\danie\Desktop\Api-ScanGo\bin\Debug\net7.0\publish\Api-ScanGo.runtimeconfig.json
-C:\Users\danie\Desktop\Api-ScanGo\bin\Debug\net7.0\publish\appsettings.Development.json
-C:\Users\danie\Desktop\Api-ScanGo\bin\Debug\net7.0\publish\appsettings.json

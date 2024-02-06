@@ -52,7 +52,7 @@ namespace api_scango.Controllers
 
             var dto = _mapper.Map<ClienteDto>(entity);
 
-            return CreatedAtAction(nameof(ObtenerClientePorTelefono), new { id = entity.Numerodetelefono }, dto); // Cambiado de Created a Ok
+            return CreatedAtAction(nameof(ObtenerClientePorTelefono), new { id = entity.NumeroTelefono }, dto); // Cambiado de Created a Ok
 
             // Loguea el error
 

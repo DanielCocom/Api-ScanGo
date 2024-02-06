@@ -3,18 +3,19 @@ using System.Collections.Generic;
 
 namespace api_scango.Domain.Entities;
 
-
 public partial class Compra
 {
     public int IdCompra { get; set; }
 
-    public string? Numerodetelefono { get; set; }
+    public string? NumeroTelefono { get; set; }
 
-    public DateTime? FechaDeCompra { get; set; }
+    public decimal? TotalPagado { get; set; }
 
-    public decimal? Subtotal { get; set; }
+    public int? TotalProductos { get; set; }
 
-    public virtual ICollection<DetalleCompra> DetalleCompra { get; set; } = new List<DetalleCompra>();
+    public DateTime? FechaCompra { get; set; }
 
-    public virtual Cliente? NumerodetelefonoNavigation { get; set; }
+    public virtual ICollection<CompraDetalles> CompraDetalles { get; set; } = new List<CompraDetalles>();
+
+    public virtual Cliente? NumeroTelefonoNavigation { get; set; }
 }

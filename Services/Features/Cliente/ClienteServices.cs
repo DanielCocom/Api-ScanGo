@@ -5,8 +5,7 @@ using api_scango.Infrastructure.Data.Repositories;
 namespace api_scango.Domain.Services
 {
 
-
-    public class ClienteService
+      public class ClienteService
     {
         private readonly ClienteRepository _clienteRepository;
 
@@ -28,7 +27,7 @@ namespace api_scango.Domain.Services
         {
             var cliente = await _clienteRepository.GetById(telefono);
 
-            if (cliente.Contraseña == contraseña)
+            if (cliente.Contrasena == contraseña)
             {
                 // Éxito en la autenticación.
                 return cliente;

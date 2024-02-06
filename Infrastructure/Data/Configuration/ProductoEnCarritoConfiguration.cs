@@ -5,35 +5,33 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace api_scango.Infrastructure.Data.Configurations;
 
-public class ProductoEnCarritoConfiguration : IEntityTypeConfiguration<ProductoEnCarrito>
+public class ProductoEnCarritoConfiguration : IEntityTypeConfiguration<ProductosEnCarrito>
 {
-    public void Configure(EntityTypeBuilder<ProductoEnCarrito> builder)
+    public void Configure(EntityTypeBuilder<ProductosEnCarrito> builder)
     {
-        builder.ToTable("ProductoEnCarrito");
-                   builder.HasKey(e => e.IdProductoEnCarrito).HasName("PK__Producto__E67E560A33B4F003");
+        builder.ToTable("ProductosEnCarrito");
+                    builder.HasKey(e => e.IdProductoEncarrito).HasName("PK__Producto__65992ACED16B4394");
 
-            builder.Property(e => e.IdProductoEnCarrito).HasColumnName("id_producto_en_carrito");
+            builder.Property(e => e.IdProductoEncarrito)
+                .ValueGeneratedNever()
+                .HasColumnName("id_productoEncarrito");
             builder.Property(e => e.Cantidad).HasColumnName("cantidad");
-            builder.Property(e => e.Codigodebarras)
+            builder.Property(e => e.IdProducto)
                 .HasMaxLength(50)
                 .IsUnicode(false)
-                .HasColumnName("codigodebarras");
-            builder.Property(e => e.IdCarrito).HasColumnName("id_carrito");
-            builder.Property(e => e.ProductoNombre)
-                .HasMaxLength(100)
+                .HasColumnName("id_producto");
+            builder.Property(e => e.NombreProducto)
+                .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("producto_nombre");
+                .HasColumnName("nombre_producto");
             builder.Property(e => e.Total)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total");
 
-            builder.HasOne(d => d.CodigodebarrasNavigation).WithMany(p => p.ProductoEnCarrito)
-                .HasForeignKey(d => d.Codigodebarras)
-                .HasConstraintName("FK__ProductoE__codig__412EB0B6");
+            builder.HasOne(d => d.IdProductoNavigation).WithMany(p => p.ProductosEnCarrito)
+                .HasForeignKey(d => d.IdProducto)
+                .HasConstraintName("FK__Productos__id_pr__48CFD27E");
 
-            builder.HasOne(d => d.IdCarritoNavigation).WithMany(p => p.ProductoEnCarrito)
-                .HasForeignKey(d => d.IdCarrito)
-                .HasConstraintName("FK__ProductoE__id_ca__403A8C7D");
 
     }
 }

@@ -3,59 +3,60 @@ using System.Threading.Tasks;
 using api_scango.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace api_scango.Infrastructure.Data.Repositories
+namespace api_scango.Infrastructure.Data.Repositories;
+
+public class ClienteRepository
 {
-    // public interface IClienteRepository
-    // {
-    //     Task<Cliente> GetById(int numerodetelefono);
-
-    //     Task AgregarClienteAsync(Cliente cliente);
-
-    //     // Otros métodos relacionados con la entidad Cliente si es necesario
-    // }
-
-    public class ClienteRepository
+    private readonly ScanGoDbContext _context;
+    public ClienteRepository(ScanGoDbContext scanGoDbContext)
     {
-        private readonly ScanGoDb _context;
+        _context = scanGoDbContext;
+    }
+    public async Task<Cliente> GetById(string numerodetelefono)
+    {
+        var cliente = await _context.Cliente
+            .FirstOrDefaultAsync(cliente => cliente.NumeroTelefono == numerodetelefono);
 
-        public ClienteRepository(ScanGoDb dbContext)
+        return cliente ?? new Cliente();
+    }
+    public async Task AgregarClienteAsync(Cliente cliente)
+    {
+        var newCarrito = new Carrito();
+        _context.Add(newCarrito);
+        await _context.SaveChangesAsync();
+
+        cliente.IdCarrito = newCarrito.IdCarrito;
+
+         _context.Add(cliente);
+        await _context.SaveChangesAsync();
+
+    }
+    public async Task<Cliente> InicioSesion(string telefono, string contraseña)
+    {
+        var cliente = await GetById(telefono);
+        // TODO: POR SI DESEO VALIDAR LA CONTRASELA TAMBIEN
+        if (cliente == null)
         {
-            _context = dbContext;
+            throw new Exception("No existe la cuenta con el número de teléfono proporcionado");
         }
-
-        public async Task<Cliente> GetById(string numerodetelefono)
+        return cliente;
+    }
+    public async Task Update(Cliente cliente)
+    {
+        var clienteExist = await _context.Cliente.FirstOrDefaultAsync(cliente => cliente.NumeroTelefono == cliente.NumeroTelefono);
+        if (clienteExist != null)
         {
-            var cliente = await _context.Cliente
-                .Include(c => c.IdCarritoNavigation.ProductoEnCarrito) // Incluir carga ansiosa del carrito
-                .FirstOrDefaultAsync(cliente => cliente.Numerodetelefono == numerodetelefono);
-
-            return cliente ?? new Cliente();
-        }
-
-        public async Task AgregarClienteAsync(Cliente cliente)
-        {
-            var newCarrito = new Carrito();
-            _context.Add(newCarrito);
+            _context.Cliente.Entry(clienteExist).CurrentValues.SetValues(cliente);
             await _context.SaveChangesAsync();
+        }
 
-            cliente.IdCarrito = newCarrito.IdCarrito;
-
-            await _context.AddAsync(cliente);
+    }
+    public async Task Delete(string numeroTelefono){
+        var clienteExist = await _context.Cliente.FirstOrDefaultAsync(cliente => cliente.NumeroTelefono == cliente.NumeroTelefono);
+        
+        if(clienteExist != null){
+            _context.Cliente.Remove(clienteExist);
             await _context.SaveChangesAsync();
-
         }
-        // actualizarCliente
-        public async Task<Cliente> InicioSesion(string telefono, string contraseña)
-        {
-            var cliente = await GetById(telefono);
-            if (cliente == null)
-            {
-                throw new Exception("No existe la cuenta con el número de teléfono proporcionado");
-            }
-            return cliente;
-        }
-
-
-        // Implementa otros métodos según sea necesario
     }
 }

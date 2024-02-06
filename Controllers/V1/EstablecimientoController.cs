@@ -43,12 +43,12 @@ public class EstablecimientoController : ControllerBase
         return Ok(dto);
     }
     [HttpPost]
-    public async Task<IActionResult> Add(EstablecimientoDTO establecimientoDTO)
+    public async Task<IActionResult> Add(EstablecimientoCreateDTO establecimientoDTO)
     {
         var entity = _mapper.Map<Establecimiento>(establecimientoDTO);
          await _service.Add(entity);
 
-         var dto = _mapper.Map<EstablecimientoDTO>(entity);
+         var dto = _mapper.Map<EstablecimientoCreateDTO>(entity);
          return CreatedAtAction(nameof(GetById), new {id = entity.IdEstablecimiento}, dto); 
     }
     [HttpPut("{id}")]
@@ -70,6 +70,8 @@ public class EstablecimientoController : ControllerBase
         await _service.Delete(id);
         return NoContent();
     }
+    // [HttpPost("/VaciarProductos")]
+   
 
 
 
