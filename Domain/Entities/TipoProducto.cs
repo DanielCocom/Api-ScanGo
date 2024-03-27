@@ -12,6 +12,4 @@ public partial class TipoProducto
     public decimal? PrecioPorKilo { get; set; }
 
     public virtual ICollection<Producto> Producto { get; set; } = new List<Producto>();
-
-    public virtual ICollection<ProductoTipoProducto> ProductoTipoProducto { get; set; } = new List<ProductoTipoProducto>();
 }

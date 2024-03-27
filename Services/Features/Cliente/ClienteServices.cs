@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
+using api_scango.Domain.Dtos;
 using api_scango.Domain.Entities;
 using api_scango.Infrastructure.Data.Repositories;
 
 namespace api_scango.Domain.Services
 {
 
-      public class ClienteService
+    public class ClienteService
     {
         private readonly ClienteRepository _clienteRepository;
 
@@ -37,6 +38,10 @@ namespace api_scango.Domain.Services
                 // Contraseña incorrecta u otra lógica de autenticación fallida.
                 throw new Exception("Credenciales incorrectas");
             }
+        }
+        public async Task UpdateUser(ClienteCreateDTO cliente)
+        {
+            await _clienteRepository.Update(cliente);
         }
     }
 }

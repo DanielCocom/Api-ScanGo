@@ -4,17 +4,19 @@ using api_scango.Infrastructure.Data.Repositories.administrador;
 
 namespace api_scango.Services.Fetures.administrador;
 
-public class AdministradorService{
+public class AdministradorService
+{
     private readonly AdministradorRepository _repository;
 
-    public AdministradorService(AdministradorRepository administradorRepository){
+    public AdministradorService(AdministradorRepository administradorRepository)
+    {
         _repository = administradorRepository;
     }
     public async Task<IEnumerable<Administrador>> getAll()
     {
         return await _repository.GetAll();
     }
-      public async Task<Administrador> GetById(int id)
+    public async Task<Administrador> GetById(int id)
     {
         return await _repository.GetbyId(id);
     }
@@ -22,6 +24,10 @@ public class AdministradorService{
     {
 
         await _repository.Add(administrador);
+    }
+    public async Task<Administrador> IniciarSesion(string usuario, string contraseña)
+    {
+        return await _repository.IniciarSesion(usuario, contraseña);
     }
     // public async Task Update(Administrador estaUpdate)
     // {

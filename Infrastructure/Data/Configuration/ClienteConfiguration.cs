@@ -10,7 +10,7 @@ public class ClientetConfiguration : IEntityTypeConfiguration<Cliente>
     public void Configure(EntityTypeBuilder<Cliente> builder)
     {
         builder.ToTable("Cliente");
-        builder.HasKey(e => e.NumeroTelefono).HasName("PK__Cliente__E2891F45EC8170C3");
+       builder.HasKey(e => e.NumeroTelefono).HasName("PK__Cliente__E2891F4519CDE59D");
 
             builder.Property(e => e.NumeroTelefono)
                 .HasMaxLength(15)
@@ -37,11 +37,11 @@ public class ClientetConfiguration : IEntityTypeConfiguration<Cliente>
 
             builder.HasOne(d => d.IdCarritoNavigation).WithMany(p => p.Cliente)
                 .HasForeignKey(d => d.IdCarrito)
-                .HasConstraintName("FK__Cliente__id_carr__4E88ABD4");
+                .HasConstraintName("FK__Cliente__id_carr__4D94879B");
 
             builder.HasOne(d => d.IdEstablecimientoNavigation).WithMany(p => p.Cliente)
                 .HasForeignKey(d => d.IdEstablecimiento)
-                .HasConstraintName("FK__Cliente__id_esta__4F7CD00D");
+                .HasConstraintName("FK__Cliente__id_esta__4E88ABD4");
 
         
     }

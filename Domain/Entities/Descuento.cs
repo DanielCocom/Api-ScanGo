@@ -9,5 +9,5 @@ public partial class Descuento
 
     public decimal Porcentaje { get; set; }
 
-    public virtual ICollection<ProductoDescuento> ProductoDescuento { get; set; } = new List<ProductoDescuento>();
+    public virtual ICollection<Producto> Producto { get; set; } = new List<Producto>();
 }

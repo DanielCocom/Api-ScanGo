@@ -10,12 +10,11 @@ public class ProductoEnCarritoConfiguration : IEntityTypeConfiguration<Productos
     public void Configure(EntityTypeBuilder<ProductosEnCarrito> builder)
     {
         builder.ToTable("ProductosEnCarrito");
-                    builder.HasKey(e => e.IdProductoEncarrito).HasName("PK__Producto__65992ACED16B4394");
+        builder.HasKey(e => e.IdProductoEncarrito).HasName("PK__Producto__65992ACE0AA2451B");
 
-            builder.Property(e => e.IdProductoEncarrito)
-                .ValueGeneratedNever()
-                .HasColumnName("id_productoEncarrito");
+            builder.Property(e => e.IdProductoEncarrito).HasColumnName("id_productoEncarrito");
             builder.Property(e => e.Cantidad).HasColumnName("cantidad");
+            builder.Property(e => e.IdCarrito).HasColumnName("id_carrito");
             builder.Property(e => e.IdProducto)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -28,10 +27,13 @@ public class ProductoEnCarritoConfiguration : IEntityTypeConfiguration<Productos
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total");
 
+            builder.HasOne(d => d.IdCarritoNavigation).WithMany(p => p.ProductosEnCarrito)
+                .HasForeignKey(d => d.IdCarrito)
+                .HasConstraintName("FK__Productos__id_ca__4AB81AF0");
+
             builder.HasOne(d => d.IdProductoNavigation).WithMany(p => p.ProductosEnCarrito)
                 .HasForeignKey(d => d.IdProducto)
-                .HasConstraintName("FK__Productos__id_pr__48CFD27E");
-
+                .HasConstraintName("FK__Productos__id_pr__49C3F6B7");
 
     }
 }

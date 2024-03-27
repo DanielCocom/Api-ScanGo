@@ -28,17 +28,22 @@ namespace api_scango.Controllers
             {
                 var cliente = await _clienteService.ObtenerClientePorTelefonoAsync(id);
 
-                if (cliente == null)
+                if (cliente.NumeroTelefono != id)
                 {
                     return NotFound(new { error = "Cliente no encontrado", message = "El cliente no existe." });
                 }
+                else
+                {
+                    var dto = _mapper.Map<ClienteDto>(cliente);
 
-                var dto = _mapper.Map<ClienteDto>(cliente);
+                    return Ok(dto);
 
-                return Ok(dto);
+                }
+
+
             }
             catch (Exception ex)
-            {
+            { 
                 // Loguea el error
                 return StatusCode(500, new { error = "Error interno del servidor", message = ex.Message });
             }
@@ -73,6 +78,15 @@ namespace api_scango.Controllers
             }
 
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Cliente>> UpdateUser(string id, ClienteCreateDTO clienteCreateDTO){
+            if(id != clienteCreateDTO.NumeroTelefono){
+                return BadRequest();
+            }
+            await _clienteService.UpdateUser(clienteCreateDTO);
+            return NoContent();
+        } 
     }
 }
 

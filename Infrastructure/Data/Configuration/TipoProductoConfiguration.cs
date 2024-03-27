@@ -9,7 +9,7 @@ public class TipoProductoConfiguration : IEntityTypeConfiguration<TipoProducto>
     public void Configure(EntityTypeBuilder<TipoProducto> builder)
     {
         builder.ToTable("TipoProducto");
-        builder.HasKey(e => e.IdTipoProducto).HasName("PK__Tipo_Pro__F5E0BFB89EAEB17A");
+        builder.HasKey(e => e.IdTipoProducto).HasName("PK__Tipo_Pro__F5E0BFB83B092371");
 
             builder.ToTable("Tipo_Producto");
 

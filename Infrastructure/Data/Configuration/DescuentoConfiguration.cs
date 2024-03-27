@@ -9,7 +9,7 @@ public class DescuentoConfiguration : IEntityTypeConfiguration<Descuento>
     public void Configure(EntityTypeBuilder<Descuento> builder)
     {
         builder.ToTable("Descuento");
-         builder.HasKey(e => e.IdDescuento).HasName("PK__Descuent__4F9A1A80C717B3A1");
+         builder.HasKey(e => e.IdDescuento).HasName("PK__Descuent__4F9A1A80336A33DF");
 
             builder.Property(e => e.IdDescuento).HasColumnName("id_descuento");
             builder.Property(e => e.Porcentaje)

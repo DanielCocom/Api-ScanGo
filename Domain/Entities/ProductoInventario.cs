@@ -7,11 +7,13 @@ public partial class ProductoInventario
 {
     public int IdProductoInventario { get; set; }
 
+    public int? IdInventario { get; set; }
+
     public string? IdProducto { get; set; }
 
     public int? Cantidad { get; set; }
 
-    public virtual Producto? IdProductoNavigation { get; set; }
+    public virtual Inventario? IdInventarioNavigation { get; set; }
 
-    public virtual ICollection<Inventario> Inventario { get; set; } = new List<Inventario>();
+    public virtual Producto? IdProductoNavigation { get; set; }
 }

@@ -23,8 +23,11 @@ public partial class Establecimiento
     public decimal? Latitud { get; set; }
 
     public virtual ICollection<Administrador> Administrador { get; set; } = new List<Administrador>();
-
+ 
     public virtual ICollection<Cliente> Cliente { get; set; } = new List<Cliente>();
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
+
+    public virtual ICollection<Compra> Compra { get; set; } = new List<Compra>();
 
     public virtual Inventario? IdInventarioNavigation { get; set; }
 }

@@ -1,5 +1,6 @@
 using System.Net;
 using System.Threading.Tasks;
+using api_scango.Domain.Dtos;
 using api_scango.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,7 +42,7 @@ public class ClienteRepository
         }
         return cliente;
     }
-    public async Task Update(Cliente cliente)
+    public async Task Update(ClienteCreateDTO cliente)
     {
         var clienteExist = await _context.Cliente.FirstOrDefaultAsync(cliente => cliente.NumeroTelefono == cliente.NumeroTelefono);
         if (clienteExist != null)

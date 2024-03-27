@@ -8,6 +8,7 @@ C:\Users\danie\Desktop\Api-ScanGo\publish\AutoMapper.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Azure.Core.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Azure.Identity.dll
+C:\Users\danie\Desktop\Api-ScanGo\publish\CloudinaryDotNet.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Microsoft.Data.SqlClient.dll
@@ -26,6 +27,10 @@ C:\Users\danie\Desktop\Api-ScanGo\publish\Microsoft.IdentityModel.Tokens.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Microsoft.OpenApi.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Microsoft.SqlServer.Server.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Microsoft.Win32.SystemEvents.dll
+C:\Users\danie\Desktop\Api-ScanGo\publish\Newtonsoft.Json.dll
+C:\Users\danie\Desktop\Api-ScanGo\publish\PayPalCheckoutSdk.dll
+C:\Users\danie\Desktop\Api-ScanGo\publish\PayPalHttp-Dotnet.dll
+C:\Users\danie\Desktop\Api-ScanGo\publish\Stripe.net.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\danie\Desktop\Api-ScanGo\publish\Swashbuckle.AspNetCore.SwaggerUI.dll

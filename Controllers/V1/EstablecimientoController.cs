@@ -46,10 +46,10 @@ public class EstablecimientoController : ControllerBase
     public async Task<IActionResult> Add(EstablecimientoCreateDTO establecimientoDTO)
     {
         var entity = _mapper.Map<Establecimiento>(establecimientoDTO);
-         await _service.Add(entity);
+        await _service.Add(entity);
 
-         var dto = _mapper.Map<EstablecimientoCreateDTO>(entity);
-         return CreatedAtAction(nameof(GetById), new {id = entity.IdEstablecimiento}, dto); 
+        var dto = _mapper.Map<EstablecimientoCreateDTO>(entity);
+        return CreatedAtAction(nameof(GetById), new { id = entity.IdEstablecimiento }, dto);
     }
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, Establecimiento esta)
@@ -70,8 +70,20 @@ public class EstablecimientoController : ControllerBase
         await _service.Delete(id);
         return NoContent();
     }
-    // [HttpPost("/VaciarProductos")]
-   
+    [HttpGet("Inventario")]
+    public async Task<IActionResult> GetInventario(int idEstablecimiento)
+    {
+        var productosEnInventario = await _service.Getinventario(idEstablecimiento);
+        return Ok(productosEnInventario);
+
+    }
+    [HttpGet("BuscarProducto")]
+    public async Task<IActionResult> SearchProduct(string value){
+        var result = await _service.SearchValue(value);
+        var dto = _mapper.Map<List<InventarioDTO>>(result);
+        return Ok(dto);
+    }
+
 
 
 

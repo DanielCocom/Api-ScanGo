@@ -9,13 +9,15 @@ public partial class ProductosEnCarrito
 
     public string? IdProducto { get; set; }
 
+    public int? IdCarrito { get; set; }
+
     public string? NombreProducto { get; set; }
 
     public int? Cantidad { get; set; }
 
     public decimal? Total { get; set; }
 
-    public virtual ICollection<Carrito> Carrito { get; set; } = new List<Carrito>();
+    public virtual Carrito? IdCarritoNavigation { get; set; }
 
     public virtual Producto? IdProductoNavigation { get; set; }
 }

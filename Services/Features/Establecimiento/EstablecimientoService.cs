@@ -1,4 +1,5 @@
 
+using api_scango.Domain.Dtos;
 using api_scango.Domain.Entities;
 using api_scango.Infrastructure.Data.Repositories;
 
@@ -38,5 +39,12 @@ public class EstablecimientoService
         if(esta.Id > 0){
             await _repository.Delete(id);
         }
+    }
+    public async Task<List<InventarioDTO>> Getinventario(int idEstablecimiento){
+        return await _repository.GetInventario(idEstablecimiento);
+    }
+
+    public async Task<List<Producto>> SearchValue(string value){
+        return await _repository.SearchProduct(value);
     }
 }

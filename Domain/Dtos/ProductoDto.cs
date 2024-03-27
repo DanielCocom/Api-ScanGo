@@ -3,7 +3,8 @@ namespace api_scango.Domain.Dtos;
 
 public  class ProductoDto
 {
-    public string Codigodebarras { get; set; } = null!;
+    public string IdProducto { get; set; } = null!;
+    
 
     public string? Nombre { get; set; }
 

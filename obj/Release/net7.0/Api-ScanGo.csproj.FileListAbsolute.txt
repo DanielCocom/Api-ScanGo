@@ -76,3 +76,8 @@ C:\Users\danie\Desktop\Api-ScanGo\obj\Release\net7.0\refint\Api-ScanGo.dll
 C:\Users\danie\Desktop\Api-ScanGo\obj\Release\net7.0\Api-ScanGo.pdb
 C:\Users\danie\Desktop\Api-ScanGo\obj\Release\net7.0\Api-ScanGo.genruntimeconfig.cache
 C:\Users\danie\Desktop\Api-ScanGo\obj\Release\net7.0\ref\Api-ScanGo.dll
+C:\Users\danie\Desktop\Api-ScanGo\bin\Release\net7.0\CloudinaryDotNet.dll
+C:\Users\danie\Desktop\Api-ScanGo\bin\Release\net7.0\Newtonsoft.Json.dll
+C:\Users\danie\Desktop\Api-ScanGo\bin\Release\net7.0\PayPalCheckoutSdk.dll
+C:\Users\danie\Desktop\Api-ScanGo\bin\Release\net7.0\PayPalHttp-Dotnet.dll
+C:\Users\danie\Desktop\Api-ScanGo\bin\Release\net7.0\Stripe.net.dll

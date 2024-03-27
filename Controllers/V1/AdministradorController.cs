@@ -30,7 +30,7 @@ public class AdministradorController : ControllerBase
         {
             var administrador = await _admiService.GetById(id);
 
-            if (administrador == null)
+            if (administrador == null) 
             {
                 return NotFound(new { error = "Cliente no encontrado", message = "El administrador no existe." });
             }
@@ -59,7 +59,25 @@ public class AdministradorController : ControllerBase
 
         return CreatedAtAction(nameof(getById), new { id = entity.IdAdministrador }, dto); // Cambiado de Created a Ok
 
-        // Loguea el error
 
+    }
+    [HttpPost("IniciarSesion")]
+    public async Task<IActionResult> IniciarSesion([FromBody] AdministradorLoginDto admi){
+         try
+            {
+                var administrador = await _admiService.IniciarSesion(admi.Nombre, admi.Contraseña);
+
+                if(administrador != null){
+                return Ok(administrador);
+
+                }   
+                else{
+                    return BadRequest("Credenciales Incorrectas");
+                }             
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = "Error de autenticación", message = ex.Message });
+            }
     }
 }

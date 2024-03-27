@@ -34,15 +34,17 @@ public partial class ScanGoDbContext : DbContext
 
     public virtual DbSet<Producto> Producto { get; set; }
 
-    public virtual DbSet<ProductoDescuento> ProductoDescuento { get; set; }
 
     public virtual DbSet<ProductoInventario> ProductoInventario { get; set; }
 
-    public virtual DbSet<ProductoTipoProducto> ProductoTipoProducto { get; set; }
 
     public virtual DbSet<ProductosEnCarrito> ProductosEnCarrito { get; set; }
 
     public virtual DbSet<TipoProducto> TipoProducto { get; set; }
+    public virtual DbSet<Venta> Venta { get; set; }
+    public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
+
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ConnectionStrings:gemDevelopment");
@@ -56,16 +58,17 @@ public partial class ScanGoDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ClientetConfiguration());
         modelBuilder.ApplyConfiguration(new CarritoConfiguration());
         modelBuilder.ApplyConfiguration(new ProductoEnCarritoConfiguration());
-        modelBuilder.ApplyConfiguration(new ProductoDescuentoConfiguration());
+        // modelBuilder.ApplyConfiguration(new ProductoDescuentoConfiguration());
         modelBuilder.ApplyConfiguration(new CompraConfiguration());
         modelBuilder.ApplyConfiguration(new DetalleCompraConfiguration());
         modelBuilder.ApplyConfiguration(new InventarioConfiguration());
         modelBuilder.ApplyConfiguration(new TipoProductoConfiguration());
-        modelBuilder.ApplyConfiguration(new ProductoTipoPtoductoConfiguration());
+        // modelBuilder.ApplyConfiguration(new ProductoTipoPtoductoConfiguration());
         modelBuilder.ApplyConfiguration(new ProductoInventariorConfiguration());
         modelBuilder.ApplyConfiguration(new DescuentoConfiguration());
         modelBuilder.ApplyConfiguration(new AdministradorConfiguration());
-
+        modelBuilder.ApplyConfiguration(new DetalleVentaConfiguration());
+        modelBuilder.ApplyConfiguration(new VentaConfiguration());
         OnModelCreatingPartial(modelBuilder);
     }
 

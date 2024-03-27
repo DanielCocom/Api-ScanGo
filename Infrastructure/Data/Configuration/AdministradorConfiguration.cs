@@ -9,7 +9,7 @@ public class AdministradorConfiguration : IEntityTypeConfiguration<Administrador
     public void Configure(EntityTypeBuilder<Administrador> builder)
     {
         builder.ToTable("Administrador");
-        builder.HasKey(e => e.IdAdministrador).HasName("PK__Administ__0FE822AA5663623D");
+        builder.HasKey(e => e.IdAdministrador).HasName("PK__Administ__0FE822AA0ABFEC6D");
 
             builder.Property(e => e.IdAdministrador).HasColumnName("id_administrador");
             builder.Property(e => e.Contraseña)
@@ -27,6 +27,6 @@ public class AdministradorConfiguration : IEntityTypeConfiguration<Administrador
 
             builder.HasOne(d => d.IdEstablecimientoNavigation).WithMany(p => p.Administrador)
                 .HasForeignKey(d => d.IdEstablecimiento)
-                .HasConstraintName("FK__Administr__id_es__5EBF139D");
+                .HasConstraintName("FK__Administr__id_es__59063A47");
     }
 }

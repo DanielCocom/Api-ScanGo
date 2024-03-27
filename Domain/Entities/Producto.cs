@@ -17,15 +17,17 @@ public partial class Producto
 
     public int? IdTipoProducto { get; set; }
 
+    public int? IdDescuento { get; set; }
+
     public virtual ICollection<CompraDetalles> CompraDetalles { get; set; } = new List<CompraDetalles>();
+
+    public virtual Descuento? IdDescuentoNavigation { get; set; }
 
     public virtual TipoProducto? IdTipoProductoNavigation { get; set; }
 
-    public virtual ICollection<ProductoDescuento> ProductoDescuento { get; set; } = new List<ProductoDescuento>();
+    public virtual ICollection<ProductoInventario> ProductoInventario { get; set; }  = new List<ProductoInventario>();
+    public virtual ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
 
-    public virtual ICollection<ProductoInventario> ProductoInventario { get; set; } = new List<ProductoInventario>();
-
-    public virtual ICollection<ProductoTipoProducto> ProductoTipoProducto { get; set; } = new List<ProductoTipoProducto>();
 
     public virtual ICollection<ProductosEnCarrito> ProductosEnCarrito { get; set; } = new List<ProductosEnCarrito>();
 }
